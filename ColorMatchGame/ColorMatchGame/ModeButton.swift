@@ -1,7 +1,7 @@
 //
 //  ModeButton.swift
 //  ColorMatchGame
-//
+//  Reusable buttons for the mode selection
 //  Created by COBSCCOMP242P002 on 2026-01-12.
 //
 
@@ -10,43 +10,26 @@ import SwiftUI
 struct ModeButton: View {
     let title: String
     let stars: Int
-    let color: Color
-    let destination: AnyView?
-    let disabled: Bool
+    let size: String
 
     var body: some View {
-        Group {
-            if let destination = destination {
-                NavigationLink {
-                    destination
-                } label: {
-                    buttonContent
-                }
-            } else {
-                Button(action: {}) {
-                    buttonContent
-                }
-            }
-        }
-        .buttonStyle(GameModeButtonStyle(color: color))
-        .disabled(disabled)
-        .opacity(disabled ? 0.4 : 1)
-    }
-
-    private var buttonContent: some View {
-        HStack(spacing: 2) {
+        
+        //Vertical Stack Start
+        VStack {
             Text(title)
-                .padding(.horizontal, 4)
-
-            Spacer()
-
-            HStack(spacing: 4) {
-                ForEach(0..<stars, id: \.self) { _ in
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.yellow)
-                }
-            }
+                .font(.title2.bold())
+                    
+            Text(String(repeating: "⭐️", count: stars))
+                    
+            Text(size)
+                .font(.caption)
         }
+        .frame(width: 220, height: 80)
+        .background(Color.blue.opacity(0.4))
+        .foregroundColor(.white)
+        .cornerRadius(15)
+        .shadow(radius: 6)
+        //Vertical Stack End
     }
 }
 

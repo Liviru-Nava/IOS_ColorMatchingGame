@@ -8,53 +8,52 @@
 import SwiftUI
 
 struct ModeSelectionView: View {
+    
+    //I added this so the view will dismiss (close) when the exit button is clicked
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         ZStack {
-            // 🌌 Dark background
-            LinearGradient(
-                gradient: Gradient(colors: [
-                    Color(red: 0.08, green: 0.10, blue: 0.18), // deep navy
-                    Color(red: 0.15, green: 0.10, blue: 0.30), // dark purple
-                    Color(red: 0.10, green: 0.05, blue: 0.20)  // midnight violet
-                ]),
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-
-            // 🎮 Content
+            //Add the Space theme (ignores Safe Areas)
+            SpaceTheme.background.ignoresSafeArea()
+            
+            //Vertical Stack Start
             VStack(spacing: 30) {
-                Text("Welcome to Color Match Game")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
-
-                ModeButton(
-                    title: "Easy Mode",
-                    stars: 1,
-                    color: .green,
-                    destination: AnyView(EasyGameView()),
-                    disabled: false
-                )
-
-                ModeButton(
-                    title: "Medium Mode",
-                    stars: 2,
-                    color: .orange,
-                    destination: nil,
-                    disabled: true
-                )
-
-                ModeButton(
-                    title: "Hard Mode",
-                    stars: 3,
-                    color: .red,
-                    destination: nil,
-                    disabled: true
-                )
+                Text("🌌 Color Match")
+                    .font(.largeTitle.bold())
+                    .foregroundColor(SpaceTheme.textColor)
+                
+                //Easy mode button with navigation
+                NavigationLink {
+                    EasyGameView()
+                } label: {
+                    ModeButton(title: "Easy", stars: 1, size: "3 × 3")
+                }
+                
+                //Medium mode button with navigation
+                NavigationLink {
+                    MediumGameView()
+                } label: {
+                    ModeButton(title: "Medium", stars: 2, size: "5 × 5")
+                }
+                
+                //Hard mode button with navigation
+                NavigationLink {
+                    EasyGameView()
+                } label: {
+                    ModeButton(title: "Easy", stars: 1, size: "3 × 3")
+                        .opacity(0.4)
+                        .disabled(true)
+                }
+                
+                //Exit Game button
+                Button("Exit Game") {
+                    dismiss()
+                }
+                .foregroundColor(.red)
             }
             .padding()
+            //Vertical Stack End
         }
     }
 }

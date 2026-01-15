@@ -1,21 +1,21 @@
 //
-//  EasyGameview.swift
+//  MediumGameView.swift
 //  ColorMatchGame
-//  Easy Game mode view
-//  Created by COBSCCOMP242P002 on 2026-01-12.
+//  This is the view for the Medium Game Mode
+//  Created by Liviru Navaratna on 2026-01-15.
 //
 
 import SwiftUI
 internal import Combine
 
-struct EasyGameView: View {
+struct MediumGameView: View {
     
-    let gridColumns = Array(repeating: GridItem(.flexible()), count: 3)
+    let gridColumns = Array(repeating: GridItem(.flexible()), count: 5)
     
     @State private var colors: [GameColor] = []
     @State private var firstSelection: Int?
     @State private var score = 0
-    @State private var timeRemaining = 120
+    @State private var timeRemaining = 90
     @State private var gameStarted = false
     @State private var showGameOver = false
     
@@ -54,6 +54,8 @@ struct EasyGameView: View {
                     }
                 }
                 
+                
+                //Check if the game started or not
                 if !gameStarted {
                     Button("Start") {
                         startGame()
@@ -109,7 +111,7 @@ struct EasyGameView: View {
     }
     
     func resetBoard() {
-        colors = (0..<9).compactMap { _ in GameColor.allCases.randomElement() }
+        colors = (0..<25).compactMap { _ in GameColor.allCases.randomElement() }
         firstSelection = nil
     }
     
@@ -128,12 +130,12 @@ struct EasyGameView: View {
         let penalty: Int
         
         switch timeRemaining {
-        case 60...120:
-            bonus = 5; penalty = 15
-        case 30..<60:
-            bonus = 10; penalty = 20
-        default:
+        case 60...90:
             bonus = 15; penalty = 30
+        case 30..<60:
+            bonus = 30; penalty = 60
+        default:
+            bonus = 45; penalty = 75
         }
         
         let value = correct ? bonus : -penalty
@@ -161,7 +163,7 @@ struct EasyGameView: View {
     
     func resetGame() {
         score = 0
-        timeRemaining = 120
+        timeRemaining = 90
         startGame()
     }
     
@@ -171,7 +173,7 @@ struct EasyGameView: View {
     
     func timerColor() -> Color {
         switch timeRemaining {
-        case 60...120:
+        case 60...90:
             return .green
         case 30..<60:
             return .yellow
@@ -182,3 +184,5 @@ struct EasyGameView: View {
         }
     }
 }
+
+

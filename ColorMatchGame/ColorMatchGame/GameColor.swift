@@ -1,7 +1,7 @@
 //
 //  GameColor.swift
 //  ColorMatchGame
-//
+//  Purpose it to provide the color to the game board
 //  Created by Liviru Navaratna on 2026-01-03.
 //
 
