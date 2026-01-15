@@ -23,7 +23,6 @@ struct MediumGameView: View {
     @State private var showScoreChange = false
     @State private var scoreChangeColor: Color = .green
     
-    
     //timer code
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -32,7 +31,7 @@ struct MediumGameView: View {
             SpaceTheme.background.ignoresSafeArea()
             
             //Vertical stack Start
-            VStack(spacing: 25) {
+            VStack(spacing: 20) {
                 
                 //Time display
                 Text(formatTime())
@@ -49,7 +48,7 @@ struct MediumGameView: View {
                         Text(scoreChangeText)
                             .font(.title)
                             .foregroundColor(scoreChangeColor)
-                            .offset(y: -40)
+                            .offset(y: -20)
                             .transition(.scale.combined(with: .opacity))
                     }
                 }

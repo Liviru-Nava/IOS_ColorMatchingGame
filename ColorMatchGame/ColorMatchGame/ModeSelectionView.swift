@@ -19,7 +19,7 @@ struct ModeSelectionView: View {
             
             //Vertical Stack Start
             VStack(spacing: 30) {
-                Text("🌌 Color Match")
+                Text("Time to Color Match")
                     .font(.largeTitle.bold())
                     .foregroundColor(SpaceTheme.textColor)
                 
@@ -39,11 +39,9 @@ struct ModeSelectionView: View {
                 
                 //Hard mode button with navigation
                 NavigationLink {
-                    EasyGameView()
+                    HardGameView()
                 } label: {
-                    ModeButton(title: "Easy", stars: 1, size: "3 × 3")
-                        .opacity(0.4)
-                        .disabled(true)
+                    ModeButton(title: "Hard", stars: 3, size: "Custom board")
                 }
                 
                 //Exit Game button

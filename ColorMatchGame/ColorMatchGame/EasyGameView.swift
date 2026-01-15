@@ -49,7 +49,7 @@ struct EasyGameView: View {
                         Text(scoreChangeText)
                             .font(.title)
                             .foregroundColor(scoreChangeColor)
-                            .offset(y: -40)
+                            .offset(y: -20)
                             .transition(.scale.combined(with: .opacity))
                     }
                 }
@@ -109,7 +109,9 @@ struct EasyGameView: View {
     }
     
     func resetBoard() {
-        colors = (0..<9).compactMap { _ in GameColor.allCases.randomElement() }
+        colors = (0..<9).compactMap {
+            _ in GameColor.allCases.randomElement()
+        }
         firstSelection = nil
     }
     
